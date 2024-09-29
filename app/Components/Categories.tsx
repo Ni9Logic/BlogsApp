@@ -1,8 +1,12 @@
 import { Badge } from "@/components/ui/badge";
 
-
+type Categories = {
+  name: string;
+  variant: string;
+  slug?: string;
+};
 const Categories = () => {
-  const categories = [
+  const categories: Categories[] = [
     {
       name: "Fashion",
       variant: "default",

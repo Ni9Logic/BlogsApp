@@ -2,6 +2,7 @@ import React from "react";
 import Title from "./Components/Title";
 import MainBlog from "./Components/MainBlog";
 import Categories from "./Components/Categories";
+import { RecentPosts } from "./Components/RecentPosts";
 
 export default function Home() {
   return (
@@ -9,6 +10,7 @@ export default function Home() {
       <Title />
       <MainBlog />
       <Categories />
+      <RecentPosts />
     </div>
   );
 }

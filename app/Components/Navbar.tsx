@@ -2,7 +2,12 @@
 
 import { Contact, HomeIcon } from "lucide-react";
 import { FloatingDock } from "./ui/floating-dock";
-import { IconLogin2, IconPhotoShare, IconPointerQuestion } from "@tabler/icons-react";
+import {
+  IconLogin2,
+  IconPencil,
+  IconPhotoShare,
+  IconPointerQuestion,
+} from "@tabler/icons-react";
 
 type Items = {
   title: string;
@@ -31,6 +36,11 @@ export const Navbar = () => {
       title: "Blogs",
       icon: <IconPhotoShare />,
       href: "/Blogs",
+    },
+    {
+      title: "Publish",
+      icon: <IconPencil />,
+      href: "/Publish",
     },
     {
       title: "Log In",

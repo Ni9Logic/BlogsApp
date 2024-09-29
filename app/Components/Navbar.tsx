@@ -4,10 +4,11 @@ import { Contact, HomeIcon } from "lucide-react";
 import { FloatingDock } from "./ui/floating-dock";
 import {
   IconLogin2,
+  IconLogout2,
   IconPencil,
   IconPhotoShare,
-  IconPointerQuestion,
 } from "@tabler/icons-react";
+import React from "react";
 
 type Items = {
   title: string;
@@ -15,17 +16,15 @@ type Items = {
   href: string;
 };
 
-export const Navbar = () => {
+type NavbarProps = {
+  isLoggedIn: boolean;
+};
+export const Navbar: React.FC<NavbarProps> = ({ isLoggedIn }: NavbarProps) => {
   const items: Items[] = [
     {
       title: "Home",
       icon: <HomeIcon />,
       href: "/",
-    },
-    {
-      title: "About Us",
-      icon: <IconPointerQuestion />,
-      href: "/Aboutus",
     },
     {
       title: "Contact Us",
@@ -43,9 +42,9 @@ export const Navbar = () => {
       href: "/Publish",
     },
     {
-      title: "Log In",
-      icon: <IconLogin2 />,
-      href: "/",
+      title: isLoggedIn ? "Logout" : "Login",
+      icon: isLoggedIn ? <IconLogout2 /> : <IconLogin2 />,
+      href: "/Login",
     },
   ];
   return (

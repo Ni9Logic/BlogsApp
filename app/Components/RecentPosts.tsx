@@ -1,6 +1,7 @@
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import PopularPosts from "./PopularPosts";
+import DiscoverTopics from "./DiscoverTopics";
 
 type Posts = {
   author: string;
@@ -54,8 +55,12 @@ export const RecentPosts = () => {
           ))}
         </div>
       </div>
-      {/* Popular Posts */}
-      <PopularPosts />
+      <div className="flex flex-col gap-10">
+        {/* Popular Posts */}
+        <PopularPosts />
+        {/* Categories */}
+        <DiscoverTopics />
+      </div>
     </div>
   );
 };

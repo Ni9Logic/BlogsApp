@@ -24,6 +24,28 @@ const PopularPosts = () => {
       image: "",
       link: "",
     },
+    {
+      author: "Hassan R",
+      isPopular: true,
+      title: "Easiest way for react state management.",
+      category: "Travel",
+      date: "2024-9-29",
+      description:
+        "State management is one of the most important concepts in react world.",
+      image: "",
+      link: "",
+    },
+    {
+      author: "Hassan R",
+      isPopular: true,
+      title: "Easiest way for react state management.",
+      category: "Travel",
+      date: "2024-9-29",
+      description:
+        "State management is one of the most important concepts in react world.",
+      image: "",
+      link: "",
+    },
   ];
   return (
     <div>
@@ -31,7 +53,7 @@ const PopularPosts = () => {
       <h1 className="font-bold text-2xl">Most Popular</h1>
       <div className="mt-5">
         {posts.map((post) => (
-          <div key={post.author}>
+          <div key={post.author} className="mt-10 hover:bg-gray-100 hover:cursor-pointer p-5">
             <Badge variant={"destructive"} className="rounded-full">
               {post.category}
             </Badge>

@@ -2,9 +2,6 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import Navbar from "./Components/Navbar";
-import SessionProvider from "./SessionProvider";
-import { getServerSession } from "next-auth";
-import { authOptions } from "./api/auth/[...nextauth]";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -27,19 +24,15 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const session = await getServerSession(authOptions);
-  const isLoggedIn = session ? true : false;
   return (
     <html lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <SessionProvider session={session}>
-          <div className="items-center justify-center flex">
-            <Navbar isLoggedIn={isLoggedIn} />
-          </div>
-          {children}
-        </SessionProvider>
+        <div className="items-center justify-center flex">
+          <Navbar isLoggedIn={false} />
+        </div>
+        {children}
       </body>
     </html>
   );

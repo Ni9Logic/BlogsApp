@@ -6,7 +6,13 @@ export const Title = () => {
       <h2 className="text-2xl md:text-4xl lg:text-7xl text-center text-black dark:text-white font-sans tracking-tight">
         <div className="flex flex-row gap-3 items-center text-center justify-center">
           Hey,
-          <p className="font-bold">Hassan R </p>
+          <a
+            href="https://github.com/Ni9Logic"
+            target="_blank"
+            className="font-bold underline"
+          >
+            Hassan R{" "}
+          </a>
           here.{" "}
         </div>
         <div className=" bg-clip-text text-transparent bg-no-repeat bg-gradient-to-r from-purple-500 via-violet-500 to-pink-500 py-4">

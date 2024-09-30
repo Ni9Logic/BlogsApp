@@ -3,7 +3,7 @@ import cultureImage from "@/app/public/culture.png";
 import { Button } from "@/components/ui/button";
 export const MainBlog = () => {
   return (
-    <div className="p-24 ml-64   flex flex-row gap-10">
+    <div className="md:p-24 p-4 md:ml-64   flex md:flex-row flex-col gap-10">
       <Image src={cultureImage} alt="culture image" width={400} height={5} />
       <div className="flex flex-col gap-2 justify-center">
         <h1 className="text-4xl font-bold">

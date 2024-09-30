@@ -8,9 +8,7 @@ import {
 } from "@/components/ui/card";
 import ApiForm from "./components/ApiForm";
 
-
 export default function page() {
- 
   return (
     <div className="p-24">
       <Card>

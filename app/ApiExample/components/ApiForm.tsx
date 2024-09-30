@@ -75,10 +75,12 @@ const ApiForm = () => {
       />
       {user && (
         <div className="mt-5">
-          <div className="flex flex-row gap-10">
-            <Avatar>
-              <AvatarImage src={user.avatar_url} />
-            </Avatar>
+          <div className="flex md:flex-row flex-col gap-5">
+            <div className="items-center flex justify-center">
+              <Avatar>
+                <AvatarImage src={user.avatar_url} />
+              </Avatar>
+            </div>
             <span className="flex flex-col gap-1">
               <Label>Name</Label>
               <p>{user.name}</p>

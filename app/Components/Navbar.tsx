@@ -2,11 +2,7 @@
 
 import { Contact, HomeIcon } from "lucide-react";
 import { FloatingDock } from "./ui/floating-dock";
-import {
-  IconLogin2,
-  IconLogout2,
-  IconPencil,
-} from "@tabler/icons-react";
+import { IconLogin2, IconLogout2, IconPencil } from "@tabler/icons-react";
 import React from "react";
 import { GitHubLogoIcon } from "@radix-ui/react-icons";
 
@@ -48,7 +44,7 @@ export const Navbar: React.FC<NavbarProps> = ({ isLoggedIn }: NavbarProps) => {
     },
   ];
   return (
-    <div className="p-16 w-auto">
+    <div className="md:p-16 md:w-auto md:items-center md:justify-center">
       <FloatingDock items={items} />
     </div>
   );

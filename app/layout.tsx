@@ -31,7 +31,7 @@ export default async function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <ToasterContext />
-        <div className="items-center justify-center flex">
+        <div className="md:items-center md:justify-center md:flex">
           <Navbar isLoggedIn={false} />
         </div>
         {children}

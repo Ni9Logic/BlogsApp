@@ -33,7 +33,7 @@ const Categories = () => {
     },
   ];
   return (
-    <div className="ml-64 flex flex-col gap-10">
+    <div className="md:ml-64 p-4 flex flex-col gap-10">
       <h1 className="font-bold text-3xl">Categories</h1>
       <div className="flex flex-row gap-3 mb-5">
         {categories.map((category) => (

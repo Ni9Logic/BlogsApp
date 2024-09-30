@@ -57,7 +57,7 @@ export const RecentPosts = () => {
   }, []);
 
   return (
-    <div className="ml-64 flex flex-row gap-1">
+    <div className="md:ml-64 p-4 flex md:flex-row flex-col gap-1">
       {/* Recent Posts */}
       <div>
         <h1 className="font-bold text-3xl">Recent Posts</h1>
@@ -85,7 +85,7 @@ export const RecentPosts = () => {
               <CardContent>
                 <div className="flex flex-col gap-5">
                   {posts.map((post: Posts) => (
-                    <div key={post.id} className="flex flex-row gap-6 p-5">
+                    <div key={post.id} className="flex md:flex-row flex-col gap-6 md:p-5">
                       {/* Display image if available */}
                       {post.image ? (
                         <Image
@@ -98,7 +98,7 @@ export const RecentPosts = () => {
                       ) : (
                         <div className="w-96 h-64 bg-gray-300"></div>
                       )}
-                      <div className="p-10">
+                      <div className="md:p-10 p-5">
                         {/* Date and Category */}
                         <div className="flex flex-row gap-2">
                           <p className="text-[14px]">

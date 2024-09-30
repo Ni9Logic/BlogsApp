@@ -59,7 +59,7 @@ const PopularPosts = () => {
     <div>
       <p className="text-gray-500">What&apos;s hot 🔥</p>
       <h1 className="font-bold text-2xl">Most Popular</h1>
-      <Card>
+      <Card className="p-5">
         <CardContent className="p-5">
           <div className="mt-5">
             {posts.length > 0 ? (

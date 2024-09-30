@@ -101,7 +101,7 @@ const Publish = () => {
   };
 
   return (
-    <div className="p-24">
+    <div className="md:p-24 p-4">
       <Card>
         <CardHeader>
           <CardTitle>Publish A Post</CardTitle>

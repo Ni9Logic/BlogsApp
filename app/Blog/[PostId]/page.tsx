@@ -37,7 +37,7 @@ export default async function page({ params }: { params: { PostId: string } }) {
         <CardHeader>
           <CardTitle>
             <h1 className="text-4xl font-bold">{post.title}</h1>
-            <div className="flex md:flex-row flex-col gap-4 mt-2">
+            <div className="flex md:flex-row flex-col gap-4 mt-2">1
               <p className="text-gray-600">By {post.author}</p>
               <Badge variant={"outline"} className="flex justify-center text-center">{post.category}</Badge>
               <p className="text-gray-600">

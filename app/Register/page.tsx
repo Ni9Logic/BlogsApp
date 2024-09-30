@@ -9,7 +9,7 @@ import SignUpForm from "./components/SignUpForm";
 
 export default function page() {
   return (
-    <div className="p-24">
+    <div className="md:p-24 p-4">
       <Card>
         <CardHeader>
           <CardTitle>Sign Up</CardTitle>

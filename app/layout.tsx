@@ -28,13 +28,13 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased flex flex-col min-h-screen`}
       >
         <ToasterContext />
-        <div className="md:items-center md:justify-center md:flex">
+        <div className="flex-grow">{children}</div>
+        <div className="p-5 fixed bottom-0 left-0 right-0 md:items-center md:justify-center md:flex">
           <Navbar isLoggedIn={false} />
         </div>
-        {children}
       </body>
     </html>
   );

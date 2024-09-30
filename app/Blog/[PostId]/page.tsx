@@ -31,7 +31,7 @@ export default async function page({ params }: { params: { PostId: string } }) {
 
   // Render the post details if the post exists
   return post ? (
-    <div className="p-24 flex items-center justify-center">
+    <div className="md:p-24 p-4 flex items-center justify-center">
       {/* Display the title and basic details */}
       <Card>
         <CardHeader>

@@ -1,17 +1,21 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
   CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+import LoginForm from "./components/LoginForm";
 
+// TODO: 1. Create sign up page, then register the user in the database via the youtube tutorial.
+// TODO: 2. Login the user, learn about auth session with firebase.
+// TODO: 3. Only logged in users can publish posts.
+// TODO: 4. Learn about uploading images with firebase.
+// TODO: 5. Learn about fetching data from firebase.
+// TODO: 6. Make sure page is responsive.
+// TODO: 7. Page revalidation as well.
 export default function page() {
   return (
     <div className="p-24">
@@ -23,23 +27,8 @@ export default function page() {
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <form>
-            <Label>Email</Label>
-            <Input type="email" required />
-            <Label>Password</Label>
-            <Input type="password" required />
-
-            <p className="text-[12px] flex flex-row gap-2">
-              Don&apos;t have an account?{" "}
-              <a href="/Register" className="text-blue-500 underline">
-                Sign Up
-              </a>{" "}
-            </p>
-          </form>
+          <LoginForm />
         </CardContent>
-        <CardFooter>
-          <Button>Login</Button>
-        </CardFooter>
       </Card>
     </div>
   );

@@ -1,9 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
 
 export async function POST(req: NextRequest) {
-    console.log('Received request'); // Added log to see if the function is triggered
     try {
-        const { username } = await req.json(); // Get the GitHub username from request body
+        const { username } = await req.json();
         const url = `https://api.github.com/users/${username}`;
 
         const response = await fetch(url);

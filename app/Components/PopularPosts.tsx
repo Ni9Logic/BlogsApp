@@ -1,3 +1,4 @@
+"use client";
 import { Badge } from "@/components/ui/badge";
 import React, { useEffect, useState } from "react";
 import { firestore } from "@/firebase/firebase"; // Import your configured Firestore
@@ -5,8 +6,10 @@ import { collection, getDocs } from "firebase/firestore";
 import { format } from "date-fns";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Card, CardContent } from "@/components/ui/card";
+import { useRouter } from "next/navigation";
 
 type Posts = {
+  id: string;
   author: string;
   isPopular: boolean;
   title: string;
@@ -19,6 +22,7 @@ type Posts = {
 
 const PopularPosts = () => {
   const [posts, setPosts] = useState<Posts[]>([]); // State to store posts
+  const router = useRouter();
 
   // Function to fetch popular posts from Firestore
   const fetchPopularPosts = async () => {
@@ -29,6 +33,7 @@ const PopularPosts = () => {
       const postsData: Posts[] = querySnapshot.docs.map((doc) => {
         const data = doc.data();
         return {
+          id: doc.id,
           author: data.author || "Unknown", // Ensure these fields match your Firestore data
           isPopular: data.isPopular,
           title: data.title,
@@ -59,9 +64,10 @@ const PopularPosts = () => {
           <div className="mt-5">
             {posts.length > 0 ? (
               posts.map((post, index) => (
-                <div
-                  key={index} // Use a unique identifier (e.g., `post.id` if available)
+                <div // Adjust the link to match your routing
+                  key={index}
                   className="mt-10 hover:bg-gray-100 hover:cursor-pointer p-5"
+                  onClick={() => router.push(`/Blog/${post.id}`)}
                 >
                   <Badge variant={"destructive"} className="rounded-full">
                     {post.category}

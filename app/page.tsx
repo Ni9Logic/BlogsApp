@@ -3,6 +3,7 @@ import Title from "./Components/Title";
 import MainBlog from "./Components/MainBlog";
 import Categories from "./Components/Categories";
 import { RecentPosts } from "./Components/RecentPosts";
+import Footer from "./Components/ui/Footer";
 
 export default function Home() {
   return (
@@ -11,6 +12,7 @@ export default function Home() {
       <MainBlog />
       <Categories />
       <RecentPosts />
+      <Footer />
     </div>
   );
 }

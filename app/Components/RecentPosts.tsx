@@ -11,7 +11,7 @@ import { format } from "date-fns/format";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Card, CardContent } from "@/components/ui/card";
 type Posts = {
-  id: string; // Add an ID to keep track of unique posts
+  id: string; 
   author: string;
   isPopular: boolean;
   title: string;

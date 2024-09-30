@@ -14,6 +14,13 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import type { User } from "firebase/auth";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 
 const LoginForm = () => {
   const router = useRouter();
@@ -98,48 +105,60 @@ const LoginForm = () => {
   };
   return (
     <div>
-      {!user ? (
-        <form onSubmit={handleLogin}>
-          <Label>Email</Label>
-          <Input
-            type="email"
-            onChange={(e) => {
-              setEmail(e.target.value);
-            }}
-            required
-          />
-          <Label>Password</Label>
-          <Input
-            onChange={(e) => {
-              setPassword(e.target.value);
-            }}
-            type="password"
-            required
-          />
+      <Card>
+        <CardHeader>
+          <CardTitle>{user ? "Sign Out" : "Sign In"}</CardTitle>
+          <CardDescription>
+            {user
+              ? "You are already logged In, Click on the button below to log out"
+              : "Enter your email and password in order to sign in."}
+          </CardDescription>
+        </CardHeader>
+        <CardContent>
+          {!user ? (
+            <form onSubmit={handleLogin}>
+              <Label>Email</Label>
+              <Input
+                type="email"
+                onChange={(e) => {
+                  setEmail(e.target.value);
+                }}
+                required
+              />
+              <Label>Password</Label>
+              <Input
+                onChange={(e) => {
+                  setPassword(e.target.value);
+                }}
+                type="password"
+                required
+              />
 
-          <p className="text-[12px] flex flex-row gap-2">
-            Don&apos;t have an account?{" "}
-            <a href="/Register" className="text-blue-500 underline">
-              Sign Up
-            </a>{" "}
-          </p>
-          <Button type="submit" className="mt-5">
-            {loading ? (
-              <Icons.spinner className="w-8 h-8 animate animate-spin" />
-            ) : (
-              "Log In"
-            )}
-          </Button>
-        </form>
-      ) : (
-        <Button onClick={async () => handleLogout()}>
-          {loading ? (
-            <Icons.spinner className="animate animate-spin h-8 w-8" />
+              <p className="text-[12px] flex flex-row gap-2">
+                Don&apos;t have an account?{" "}
+                <a href="/Register" className="text-blue-500 underline">
+                  Sign Up
+                </a>{" "}
+              </p>
+              <Button type="submit" className="mt-5">
+                {loading ? (
+                  <Icons.spinner className="w-8 h-8 animate animate-spin" />
+                ) : (
+                  "Log In"
+                )}
+              </Button>
+            </form>
           ) : (
-            <p>Log Out</p>
+            <Button onClick={async () => handleLogout()}>
+              {loading ? (
+                <Icons.spinner className="animate animate-spin h-8 w-8" />
+              ) : (
+                <p>Log Out</p>
+              )}
+            </Button>
           )}
-        </Button>
-      )}
+        </CardContent>
+      </Card>
     </div>
   );
 };

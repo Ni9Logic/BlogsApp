@@ -113,7 +113,7 @@ export const RecentPosts = () => {
                         <h1 className="text-3xl font-bold">{post.title}</h1>
                         <p className="text-gray-500">{post.description}</p>
                         <Button variant={"link"} className="underline">
-                          <a href={post.link}>Read More</a>
+                          <a href={`${`/Blog/${post.id}`}`}>Read More</a>
                         </Button>
                       </div>
                     </div>

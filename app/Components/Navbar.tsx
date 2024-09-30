@@ -6,9 +6,9 @@ import {
   IconLogin2,
   IconLogout2,
   IconPencil,
-  IconPhotoShare,
 } from "@tabler/icons-react";
 import React from "react";
+import { GitHubLogoIcon } from "@radix-ui/react-icons";
 
 type Items = {
   title: string;
@@ -32,9 +32,9 @@ export const Navbar: React.FC<NavbarProps> = ({ isLoggedIn }: NavbarProps) => {
       href: "/Contactus",
     },
     {
-      title: "Blogs",
-      icon: <IconPhotoShare />,
-      href: "/Blogs",
+      title: "API Example",
+      icon: <GitHubLogoIcon />,
+      href: "/ApiExample",
     },
     {
       title: "Publish",

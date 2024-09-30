@@ -96,7 +96,7 @@ export const RecentPosts = () => {
                           height={30}
                         />
                       ) : (
-                        <div className="w-96 h-64 bg-gray-300"></div>
+                        <div className="md:w-96 w-46 h-64 bg-gray-300"></div>
                       )}
                       <div className="md:p-10 p-5">
                         {/* Date and Category */}

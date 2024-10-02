@@ -1,17 +1,18 @@
 "use client";
 import { useEffect, useState } from "react";
-import { collection, getDocs, query } from "firebase/firestore";
+import { collection, getDocs, query, orderBy, limit } from "firebase/firestore";
 import { firestore } from "@/firebase/firebase";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import PopularPosts from "./PopularPosts";
 import DiscoverTopics from "./DiscoverTopics";
 import Image from "next/image";
-import { format } from "date-fns/format";
+import { format } from "date-fns";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Card, CardContent } from "@/components/ui/card";
-type Posts = {
-  id: string; 
+
+type Post = {
+  id: string;
   author: string;
   isPopular: boolean;
   title: string;
@@ -23,26 +24,25 @@ type Posts = {
 };
 
 export const RecentPosts = () => {
-  const [posts, setPosts] = useState<Posts[]>([]);
+  const [posts, setPosts] = useState<Post[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Fetch posts from Firestore
     const fetchPosts = async () => {
       try {
         const postsRef = collection(firestore, "posts");
-        const q = query(postsRef);
+        const q = query(postsRef, orderBy("createdAt", "desc"), limit(5));
         const querySnapshot = await getDocs(q);
-        const postsData: Posts[] = querySnapshot.docs.map((doc) => ({
+        const postsData: Post[] = querySnapshot.docs.map((doc) => ({
           id: doc.id,
           author: doc.data().author,
           isPopular: doc.data().isPopular,
           title: doc.data().title,
-          date: doc.data().createdAt,
+          date: doc.data().createdAt.toDate(),
           category: doc.data().category,
           description: doc.data().description,
-          image: doc.data().imageUrl || "", // Use imageUrl field from Firestore
-          link: doc.data().link || "", // Use link field from Firestore
+          image: doc.data().imageUrl || "",
+          link: doc.data().link || "",
         }));
 
         setPosts(postsData);
@@ -57,78 +57,67 @@ export const RecentPosts = () => {
   }, []);
 
   return (
-    <div className="md:ml-64 p-4 flex md:flex-row flex-col gap-1">
-      {/* Recent Posts */}
-      <div>
-        <h1 className="font-bold text-3xl">Recent Posts</h1>
-        {loading ? (
-          <div className="p-5">
-            <Card className="p-5">
+    <div className="container mx-auto px-4 py-8 lg:py-12">
+      <div className="flex flex-col lg:flex-row gap-8">
+        <div className="w-full lg:w-2/3">
+          <h1 className="font-bold text-3xl mb-6">Recent Posts</h1>
+          {loading ? (
+            <Card className="p-4">
               <CardContent>
-                <div className="flex flex-col gap-5">
-                  <div className="flex flex-row gap-6 p-5">
-                    <Skeleton className="w-[40vw] h-[35vh]" />
+                {[...Array(3)].map((_, index) => (
+                  <div key={index} className="flex flex-col md:flex-row gap-4 mb-8">
+                    <Skeleton className="w-full md:w-1/3 h-48" />
+                    <div className="w-full md:w-2/3 space-y-2">
+                      <Skeleton className="h-4 w-1/4" />
+                      <Skeleton className="h-6 w-3/4" />
+                      <Skeleton className="h-4 w-full" />
+                      <Skeleton className="h-4 w-full" />
+                    </div>
                   </div>
-                  <div className="flex flex-row gap-6 p-5">
-                    <Skeleton className="w-[40vw] h-[35vh]" />
-                  </div>
-                  <div className="flex flex-row gap-6 p-5">
-                    <Skeleton className="w-[40vw] h-[35vh]" />
-                  </div>
-                </div>
+                ))}
               </CardContent>
             </Card>
-          </div>
-        ) : (
-          <div className="p-5">
-            <Card className="p-5">
+          ) : (
+            <Card className="p-4">
               <CardContent>
-                <div className="flex flex-col gap-5">
-                  {posts.map((post: Posts) => (
-                    <div key={post.id} className="flex md:flex-row flex-col gap-6 md:p-5">
-                      {/* Display image if available */}
+                {posts.map((post: Post) => (
+                  <div key={post.id} className="flex flex-col md:flex-row gap-6 mb-8 last:mb-0">
+                    <div className="w-full md:w-1/3">
                       {post.image ? (
                         <Image
                           src={post.image}
                           alt={post.title}
-                          className="object-fit"
                           width={500}
-                          height={30}
+                          height={300}
+                          className="object-cover w-full h-48 rounded"
                         />
                       ) : (
-                        <div className="md:w-96 w-46 h-64 bg-gray-300"></div>
+                        <div className="w-full h-48 bg-gray-300 rounded"></div>
                       )}
-                      <div className="md:p-10 p-5">
-                        {/* Date and Category */}
-                        <div className="flex flex-row gap-2">
-                          <p className="text-[14px]">
-                            {/* @ts-expect-error This will work as expected */}
-                            {format(post.date.toDate(), "dd-MMM-yyyy")}
-                          </p>
-                          <p className="text-[14px] text-orange-600 font-bold">
-                            {" "}
-                            - <Badge>{post.category}</Badge>
-                          </p>
-                        </div>
-                        <h1 className="text-3xl font-bold">{post.title}</h1>
-                        <p className="text-gray-500">{post.description}</p>
-                        <Button variant={"link"} className="underline">
-                          <a href={`${`/Blog/${post.id}`}`}>Read More</a>
-                        </Button>
-                      </div>
                     </div>
-                  ))}
-                </div>
+                    <div className="w-full md:w-2/3 space-y-2">
+                      <div className="flex items-center gap-2 text-sm text-gray-600">
+                        <time dateTime={post.date.toISOString()}>
+                          {format(post.date, "dd MMM yyyy")}
+                        </time>
+                        <Badge variant="secondary">{post.category}</Badge>
+                      </div>
+                      <h2 className="text-xl font-bold">{post.title}</h2>
+                      <p className="text-gray-600 line-clamp-2">{post.description}</p>
+                      <Button variant="link" className="p-0 h-auto">
+                        <a href={`/Blog/${post.id}`} className="text-blue-600 hover:underline">Read More</a>
+                      </Button>
+                    </div>
+                  </div>
+                ))}
               </CardContent>
             </Card>
-          </div>
-        )}
-      </div>
-      <div className="flex flex-col gap-10">
-        {/* Popular Posts */}
-        <PopularPosts />
-        {/* Categories */}
-        <DiscoverTopics />
+          )}
+        </div>
+        <div className="w-full lg:w-1/3 space-y-8">
+          <PopularPosts />
+          <DiscoverTopics />
+        </div>
       </div>
     </div>
   );

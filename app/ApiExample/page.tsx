@@ -10,15 +10,15 @@ import ApiForm from "./components/ApiForm";
 
 export default function page() {
   return (
-    <div className="p-24">
-      <Card>
-        <CardHeader>
-          <CardTitle>Retrieve your github Info</CardTitle>
-          <CardDescription>
-            Enter your github username below to retrieve your github info
+    <div className="flex items-center justify-center min-h-screen">
+      <Card className="max-w-md w-full mx-4">
+        <CardHeader className="text-center">
+          <CardTitle className="text-2xl font-bold">Retrieve Your GitHub Info</CardTitle>
+          <CardDescription className="mt-2">
+            Enter your GitHub username below to retrieve your profile information
           </CardDescription>
         </CardHeader>
-        <CardContent>
+        <CardContent className="mt-4">
           <ApiForm />
         </CardContent>
       </Card>

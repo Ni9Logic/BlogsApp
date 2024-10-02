@@ -63,7 +63,7 @@ function DefaultBlogPost() {
           <section>
             <h2 className="font-bold text-2xl md:text-3xl mb-2">Description</h2>
             <p className="text-lg text-gray-800">
-              Whether you're an inspiring artist, a curious thinker, or simply
+              Whether you&apos;re an inspiring artist, a curious thinker, or simply
               looking to add a touch of curiosity to your daily routine, our journey
               together will remind you that creativity has no bounds. Get ready to
               unlock a world of innovation and self-expression.
